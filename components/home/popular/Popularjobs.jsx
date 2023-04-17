@@ -5,11 +5,22 @@ import { useRouter } from 'expo-router'
 import styles from './popularjobs.style'
 import { COLORS, SIZES } from '../../../constants'
 import PopularJobCard from '../../common/cards/popular/PopularJobCard'
+import useFetch from '../../../hook/useFetch'
 
 const Popularjobs = () => {
   const router = useRouter();
-  const isLoading = false;
-  const error = false;
+
+  const { data, isLoading, error } = useFetch('search', {
+    query: "React Native Developer, USA",
+    num_page: 1
+  })
+
+  const [selectedJobs, setSelectedJobs] = useState()
+
+  const hanldeCardPress = (item) => {
+
+  }
+
   return (
     <View style={styles.container} >
       <View style={styles.header}>
@@ -26,9 +37,11 @@ const Popularjobs = () => {
           <Text style={{ color: 'red', textAlign: 'center' }} >Ooops... Something went wrong :(</Text>
         ) : (
           <FlatList
-            data={[1, 2, 3, 4, 5]}
-            renderItem={({item}) => (
+            data={data}
+            renderItem={({ item }) => (
               <PopularJobCard
+                selectedJobs={selectedJobs}
+                hanldeCardPress={hanldeCardPress}
                 item={item}
               />
             )}
