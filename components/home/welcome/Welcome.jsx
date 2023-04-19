@@ -24,14 +24,14 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
       <View style={styles.container}>
         <Text style={styles.userName} >Hello Muhammadrasul</Text>
         <Text style={styles.welcomeMessage} >Find your perfect job</Text>
-      </View>
+      </View> 
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
             value={searchTerm}
-            onChange={(text) => setSearchTerm(text)}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder='What are you looking for?'
           />
         </View>
